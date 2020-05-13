@@ -10,8 +10,6 @@ Deck::Deck()
   top = 0;
   for (int suit=Card::Suit::SPADES; suit<=Card::Suit::CLUBS; suit++){
     for (int val=Card::Value::ACE; val<=Card::Value::KING; val++, top++){
-      cout << "Suit "<< suit << " Value " << val << endl;
-      cout << "Top is " << top << endl;
       deck[top] = Card(static_cast<Card::Suit>(suit), static_cast<Card::Value>(val));
     }
   }
@@ -26,7 +24,12 @@ Deck::~Deck()
 void Deck::deal_hand(int sets, int cards)
 {
   for (int i=0; i < sets; i++ ){
-    top -= cards;
+    for (int c = 0; c < cards; c++){
+      cout << "Dealt ";
+      deck[top].print();
+      cout << " to Player " << i << endl;
+      top--;
+    }
   }
 }
   
@@ -44,14 +47,11 @@ void Deck::shuffle(int seed)
   srand(seed);
   auto end = std::begin(deck) + top;
 
-  std::random_shuffle (std::begin(deck), end, myrandom);
+  std::random_shuffle(std::begin(deck), end, myrandom);
 }
 
 void Deck::sort()
 {
-  auto start = std::begin(deck);
-  auto mid = std::begin(deck) + top/2;
-  auto end = std::begin(deck) + top;
-  std::partial_sort(start, mid, end);
+  std::sort(std::begin(deck), std::begin(deck) + top + 1);
 }
 

@@ -9,6 +9,7 @@
 
 #include <string>
 #include <iostream>
+#include<array>
 #include "card.h"
 using namespace std;
 
@@ -29,6 +30,6 @@ public:
 	void sort();
 
   private:
-    Card deck[52];
+    array<Card, 52> deck;
     int top;
 };
