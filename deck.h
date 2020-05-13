@@ -27,4 +27,8 @@ public:
 	void shuffle(int seed);
 
 	void sort();
+
+  private:
+    Card deck[52];
+    int top;
 };

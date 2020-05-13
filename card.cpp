@@ -64,8 +64,13 @@ static string card_array[4][14] = {{"[JKR]",
 
 
 // Constructor
-Card:: Card()
+Card:: Card(){
+}
+
+Card:: Card(Suit s, Value v)
 {
+  m_suit = s;
+  m_value = v;
 }
   
 // Destructor

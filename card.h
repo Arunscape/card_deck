@@ -43,7 +43,8 @@ public:
 	};
 
 	// Constructor
-  	Card();
+    Card();
+  	Card(Suit s, Value v);
   
 	// Destructor
   	~Card();
