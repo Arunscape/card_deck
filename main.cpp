@@ -28,13 +28,16 @@ int main()
 
   cout << "\n=== Deal 3 sets of 5 cards ==============================\n";
   deck.deal_hand(3,5);
+    deck.print_deck();
 
   cout << "\n=== Deal again ==============================\n";
   deck.deal_hand(3,5);
+  deck.print_deck();
 
   cout << "\n=== Suffle and deal again ==============================\n";
   deck.shuffle(99);  // use a seed value of 99
   deck.deal_hand(3,5);
+  deck.print_deck();
 
   cout << "\n";
 }
