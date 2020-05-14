@@ -1,24 +1,24 @@
 // main.cpp
 //
-// @brief This program simulates the shuffling, sorting and dealing of a set of cards.
+// @brief This program simulates the shuffling, sorting and dealing of a set of
+// cards.
 //
 // @details
-// 
 //
-#include <iostream>
+//
 #include "deck.h"
+#include <iostream>
 
 using namespace std;
 
-int main() 
-{
+int main() {
   Deck deck;
 
   cout << "\n=== Initial Deck ==============================\n";
   deck.print_deck();
-  
+
   cout << "\n=== Shuffle Deck ==============================\n";
-  deck.shuffle(15);  // use a seed value of 15
+  deck.shuffle(15); // use a seed value of 15
   deck.print_deck();
 
   cout << "\n=== Sorted Deck ==============================\n";
@@ -26,20 +26,20 @@ int main()
   deck.print_deck();
 
   cout << "\n=== Shuffled Again ==============================\n";
-  deck.shuffle(34);  // use a seed value of 34
+  deck.shuffle(34); // use a seed value of 34
   deck.print_deck();
 
   cout << "\n=== Deal 3 sets of 5 cards ==============================\n";
-  deck.deal_hand(3,5);
-    deck.print_deck();
+  deck.deal_hand(3, 5);
+  deck.print_deck();
 
   cout << "\n=== Deal again ==============================\n";
-  deck.deal_hand(3,5);
+  deck.deal_hand(3, 5);
   deck.print_deck();
 
   cout << "\n=== Shuffle and deal again ==============================\n";
-  deck.shuffle(99);  // use a seed value of 99
-  deck.deal_hand(3,5);
+  deck.shuffle(99); // use a seed value of 99
+  deck.deal_hand(3, 5);
   deck.print_deck();
 
   cout << "\n";
