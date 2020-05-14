@@ -14,6 +14,9 @@ int main()
 {
   Deck deck;
 
+  cout << "\n=== Initial Deck ==============================\n";
+  deck.print_deck();
+  
   cout << "\n=== Shuffle Deck ==============================\n";
   deck.shuffle(15);  // use a seed value of 15
   deck.print_deck();
@@ -34,7 +37,7 @@ int main()
   deck.deal_hand(3,5);
   deck.print_deck();
 
-  cout << "\n=== Suffle and deal again ==============================\n";
+  cout << "\n=== Shuffle and deal again ==============================\n";
   deck.shuffle(99);  // use a seed value of 99
   deck.deal_hand(3,5);
   deck.print_deck();

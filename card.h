@@ -17,10 +17,10 @@ public:
   // Suit enumeration
 	enum Suit
 	{
-		SPADES = 0,
-		HEARTS = 1,
-		DIAMONDS = 2,
-		CLUBS = 3
+		DIAMONDS = 0,
+		CLUBS = 1,
+		HEARTS = 2,
+		SPADES = 3
 	};
 	
 	// value enumeration

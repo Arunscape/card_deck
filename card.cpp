@@ -4,35 +4,8 @@
 
 #include "card.h"
 
-static string card_array[4][14] = {{"[JKR]",
-                                    "[ A\u2660]",
-                                    "[ 2\u2660]",
-                                    "[ 3\u2660]",
-                                    "[ 4\u2660]",
-                                    "[ 5\u2660]",
-                                    "[ 9\u2660]",
-                                    "[ 7\u2660]",
-                                    "[ 8\u2660]",
-                                    "[ 9\u2660]",
-                                    "[10\u2660]",
-                                    "[ J\u2660]",
-                                    "[ Q\u2660]",
-                                    "[ K\u2660]"
-                                  },{"[JKR]",
-                                    "[ A\u2665]",
-                                    "[ 2\u2665]",
-                                    "[ 3\u2665]",
-                                    "[ 4\u2665]",
-                                    "[ 5\u2665]",
-                                    "[ 6\u2665]",
-                                    "[ 7\u2665]",
-                                    "[ 8\u2665]",
-                                    "[ 9\u2665]",
-                                    "[10\u2665]",
-                                    "[ J\u2665]",
-                                    "[ Q\u2665]",
-                                    "[ K\u2665]"
-                                  },{"[JKR]",
+static string card_array[4][14] = {
+                                  {"[JKR]",
                                     "[ A\u2666]",
                                     "[ 2\u2666]",
                                     "[ 3\u2666]",
@@ -59,7 +32,38 @@ static string card_array[4][14] = {{"[JKR]",
                                     "[10\u2665]",
                                     "[ J\u2663]",
                                     "[ Q\u2663]",
-                                    "[ K\u2663]"}};
+                                    "[ K\u2663]"},
+                                  {"[JKR]",
+                                    "[ A\u2665]",
+                                    "[ 2\u2665]",
+                                    "[ 3\u2665]",
+                                    "[ 4\u2665]",
+                                    "[ 5\u2665]",
+                                    "[ 6\u2665]",
+                                    "[ 7\u2665]",
+                                    "[ 8\u2665]",
+                                    "[ 9\u2665]",
+                                    "[10\u2665]",
+                                    "[ J\u2665]",
+                                    "[ Q\u2665]",
+                                    "[ K\u2665]"
+                                  },
+                                  {"[JKR]",
+                                    "[ A\u2660]",
+                                    "[ 2\u2660]",
+                                    "[ 3\u2660]",
+                                    "[ 4\u2660]",
+                                    "[ 5\u2660]",
+                                    "[ 6\u2660]",
+                                    "[ 7\u2660]",
+                                    "[ 8\u2660]",
+                                    "[ 9\u2660]",
+                                    "[10\u2660]",
+                                    "[ J\u2660]",
+                                    "[ Q\u2660]",
+                                    "[ K\u2660]"
+                                  }
+                                };
 
 
 
@@ -83,7 +87,7 @@ Card:: ~Card()
 //
 bool Card::operator== (const Card& rhs)
 {
-    return (m_value == rhs.m_value);
+    return (m_value == rhs.m_value && m_suit == rhs.m_suit);
 }
 
 //
@@ -91,15 +95,18 @@ bool Card::operator== (const Card& rhs)
 //
 bool Card::operator< (const Card& rhs)
 {
-    return (m_value < rhs.m_value);
+    if (m_value == rhs.m_value){
+      return m_suit < rhs.m_suit;
+    }
+    return m_value < rhs.m_value;
 }
 
 //
 // Card::operator<=
 //
 bool Card::operator<= (const Card& rhs)
-{
-    return (m_value <= rhs.m_value);
+{ 
+    return (*this < rhs) || (*this == rhs);
 }
 
 //
@@ -107,7 +114,7 @@ bool Card::operator<= (const Card& rhs)
 //
 bool Card::operator> (const Card& rhs)
 {
-    return (m_value > rhs.m_value);
+    return !(*this <= rhs);
 }
 	
 //
@@ -115,7 +122,7 @@ bool Card::operator> (const Card& rhs)
 //
 bool Card::operator>= (const Card& rhs)
 {
-    return (m_value >= rhs.m_value);
+    return !(*this < rhs);
 }
 
 //
