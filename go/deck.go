@@ -11,15 +11,19 @@ func (d deck) print() {
 }
 
 func newDeck() deck {
-	suits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
-	vals := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"}
+	suits := []string{"♠️", "♦️", "♥️", "♣️"}
+	vals := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
 	cards := deck{}
 
-	for i, suit := range suits {
-		for j, val := range vals {
-			cards = append(cards, suit+" of "+val)
+	for _, suit := range suits {
+		for _, val := range vals {
+			cards = append(cards, suit+" "+val)
 		}
 	}
 
 	return cards
+}
+
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
 }
