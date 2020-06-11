@@ -1,6 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"math/rand"
+	"os"
+	"strings"
+	"time"
+)
 
 type deck []string
 
@@ -10,6 +18,24 @@ func (d deck) print() {
 	}
 }
 
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+func deckFromFile(filename string) deck {
+	byteslice, err := ioutil.ReadFile(filename)
+	if err != nil {
+		log.Println(err)
+		os.Exit(1)
+	}
+
+	return deck(strings.Split(string(byteslice), ","))
+}
+
 func newDeck() deck {
 	suits := []string{"♠️", "♦️", "♥️", "♣️"}
 	vals := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
@@ -17,11 +43,19 @@ func newDeck() deck {
 
 	for _, suit := range suits {
 		for _, val := range vals {
-			cards = append(cards, suit+" "+val)
+			cards = append(cards, suit+val)
 		}
 	}
 
 	return cards
+}
+
+func (d deck) shuffle() {
+	rand.Seed(time.Now().UnixNano())
+	for i := len(d) - 1; i >= 1; i -= 1 {
+		j := rand.Intn(i)
+		d[j], d[i] = d[i], d[j]
+	}
 }
 
 func deal(d deck, handSize int) (deck, deck) {

@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	cards := newDeck()
 	cards.print()
@@ -8,6 +10,14 @@ func main() {
 	hand.print()
 
 	remainingDeck.print()
+
+	fmt.Println(cards.toString())
+	cards.saveToFile("tmp")
+
+	fmt.Println(deckFromFile("tmp"))
+
+	cards.shuffle()
+	fmt.Println(cards)
 }
 
 func newCard() string {
