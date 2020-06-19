@@ -6,11 +6,15 @@ import (
 	"log"
 	"math/rand"
 	"os"
-	"strings"
 	"time"
 )
 
-type deck []string
+type deck []card
+
+type card struct {
+	suit  string
+	value string
+}
 
 func (d deck) print() {
 	for i, c := range d {
@@ -19,7 +23,7 @@ func (d deck) print() {
 }
 
 func (d deck) toString() string {
-	return strings.Join([]string(d), ",")
+	return fmt.Sprint(d)
 }
 
 func (d deck) saveToFile(filename string) error {
@@ -33,7 +37,7 @@ func deckFromFile(filename string) deck {
 		os.Exit(1)
 	}
 
-	return deck(strings.Split(string(byteslice), ","))
+	return deck()
 }
 
 func newDeck() deck {
